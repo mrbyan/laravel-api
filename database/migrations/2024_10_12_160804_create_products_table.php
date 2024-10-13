@@ -19,18 +19,19 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('price');
-            $table->string('description');
+            $table->text('description')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
 
-        $faker = Factory::create();
-        for ($i=0; $i < 10; $i++) {
-            Product::create([
-                'name' => $faker->word,
-                'price' => $faker->randomNumber(3,true),
-                'description' => $faker->sentence(3,true),
-            ]);
-        }
+        // $faker = Factory::create();
+        // for ($i=0; $i < 10; $i++) {
+        //     Product::create([
+        //         'name' => $faker->word,
+        //         'price' => $faker->randomNumber(3,true),
+        //         'description' => $faker->sentence(3,true),
+        //     ]);
+        // }
     }
 
     /**
